@@ -95,11 +95,12 @@ $padding: 7px;
       flex-grow: 1;
       background-color: transparent;
       padding: $padding;
+      display: flex;
 
       textarea {
         width: 100%;
         color: #666;
-        height: 100%;
+        flex-grow: 1;
         resize: none;
         border-radius: $border-raidus;
         font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,

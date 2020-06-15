@@ -37,9 +37,9 @@ const initialState = {
 function Feedback({
   placeholder = 'Leave us feedback...',
   buttonText = 'Feedback',
-  path = '/api/feedback',
+  sendButtonText = 'Send',
+  thankYouMessage = 'Thank you for your feedback!',
   emojis = defaultEmojis,
-  loading,
   onSend
 }) {
   const [{ message, emoji, status }, dispatch] = useReducer(
@@ -88,21 +88,24 @@ function Feedback({
     return (
       <div className={styles.feedbackFooter}>
         <div className={styles.emojiList}>
-          {emojis.map(({ name, img }) => (
+          {emojis.map((anEmoji) => (
             <EmojiButton
-              key={name}
-              url={img}
+              key={anEmoji.name}
+              url={anEmoji.img}
               onClick={(e) => {
                 e.preventDefault()
                 e.stopPropagation()
-                dispatch({ emoji: emoji !== name ? name : undefined })
+                dispatch({
+                  emoji:
+                    !emoji || emoji.name !== anEmoji?.name ? anEmoji : undefined
+                })
               }}
-              active={emoji === name}
+              active={emoji?.name === anEmoji.name}
             />
           ))}
         </div>
         <button type='submit' className={styles.submit}>
-          Send
+          {sendButtonText}
         </button>
       </div>
     )
@@ -117,7 +120,7 @@ function Feedback({
           height='64'
           src='https://assets.vercel.com/twemoji/1f64c.svg'
         />
-        <h5>Thank you for your feedback!</h5>
+        <h5>{thankYouMessage}</h5>
       </div>
     )
   }
