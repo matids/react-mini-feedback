@@ -1,0 +1,183 @@
+$animation-speed: 200ms;
+$closed-height: 32px;
+$opened-height: 220px;
+$closed-width: 80px;
+$primary: #0070f3;
+$grayBackground: #fafafa;
+$gray: #eaeaea;
+$border-raidus: 5px;
+$padding: 7px;
+
+.feedbackComp {
+  position: fixed;
+  bottom: 25px;
+  right: 25px;
+  z-index: 99999;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
+    Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  vertical-align: middle;
+  box-sizing: border-box;
+
+  * {
+    box-sizing: inherit;
+  }
+
+  button.open {
+    cursor: pointer;
+    border: 0;
+    background-color: transparent;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    font-weight: 600;
+    transition: all $animation-speed ease-in-out;
+  }
+
+  button.open:focus {
+    outline: 0;
+  }
+
+  h5 {
+    margin: 0;
+    color: #333;
+    text-align: center;
+    font-weight: 600;
+    background-clip: padding-box;
+  }
+
+  &.opened h5 {
+    padding: $padding;
+    text-align: left;
+  }
+  .feedbackWrapper {
+    height: $closed-height;
+    width: $closed-width;
+    max-width: 86vw;
+    background-color: rgba(white, 0.98);
+    backdrop-filter: blur(5px);
+    border: 1px solid $gray;
+    border-radius: $border-raidus;
+    overflow: hidden;
+    transition: all $animation-speed ease-in-out,
+      height $animation-speed ease-in-out;
+
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.12);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  &.opened .feedbackWrapper {
+    cursor: default;
+    width: 300px;
+    height: $opened-height;
+    border: 0 solid transparent;
+    transition: all $animation-speed ease-in-out,
+      height $animation-speed ease-in-out;
+  }
+
+  .successBody {
+    text-align: center;
+  }
+
+  &.opened .feedbackBody {
+    border: 0;
+    flex-grow: 1;
+    background-color: transparent;
+    border-radius: $border-raidus;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+
+    .feedbackContainer {
+      flex-grow: 1;
+      background-color: transparent;
+      padding: $padding;
+
+      textarea {
+        width: 100%;
+        color: #666;
+        height: 100%;
+        resize: none;
+        border-radius: $border-raidus;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+          Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+        padding: $padding;
+      }
+
+      textarea:focus {
+        outline: 0;
+      }
+    }
+
+    .feedbackFooter {
+      padding: $padding;
+      border-radius: 0px;
+      height: 45px;
+      width: 100%;
+      border-top: 1px solid $gray;
+      background-color: $grayBackground;
+      overflow: hidden;
+      display: flex;
+      flex-direction: row;
+
+      .feedbackEmojiButton {
+        cursor: pointer;
+        outline: none;
+        background: transparent;
+        border: 0;
+        padding: 0;
+        margin: 0 2px;
+        transition: all 0.12s ease-in-out;
+        border-radius: 50%;
+        border: 1px solid $gray;
+
+        &.selected {
+          background: white;
+          transform: scale(1.08);
+          border: 1px solid $primary;
+        }
+      }
+
+      .feedbackEmojiButton:hover {
+        background: white;
+        transform: scale(1.08);
+      }
+
+      .feedbackEmoji {
+        height: 30px;
+        width: 30px;
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .emojiList {
+        flex-grow: 1;
+      }
+
+      button.submit {
+        cursor: pointer;
+        border: 0px;
+        min-width: 60px;
+        background-color: $primary;
+        color: white;
+        border-radius: $border-raidus;
+        padding: $padding;
+        box-shadow: 0 10px 20px rgba($primary, 0.15);
+      }
+
+      button.submit:hover {
+        background-color: darken($primary, 5%);
+        transition: all $animation-speed;
+      }
+
+      button:focus {
+        outline: 0;
+      }
+    }
+  }
+}

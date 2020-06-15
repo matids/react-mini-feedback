@@ -15,12 +15,12 @@ npm install --save react-mini-feedback
 ```jsx
 import React, { Component } from 'react'
 
-import MyComponent from 'react-mini-feedback'
+import Feedback from 'react-mini-feedback'
 import 'react-mini-feedback/dist/index.css'
 
 class Example extends Component {
   render() {
-    return <MyComponent />
+    return <Feedback />
   }
 }
 ```
